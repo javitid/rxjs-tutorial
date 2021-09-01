@@ -1,0 +1,34 @@
+<p><a href="https://rxjs.dev/guide/operators">Rxjs Operators</a></p>
+
+<p>RxJS is mostly useful for its <em>operators</em>, even though the Observable is the foundation. Operators are the essential pieces that allow complex asynchronous code to be easily composed in a declarative manner.</p>
+<h2 id="what-are-operators-">What are operators?</h2>
+<p>Operators are <strong>functions</strong>. There are two kinds of operators:</p>
+<p><strong>Pipeable Operators</strong> are the kind that can be piped to Observables using the syntax <code>observableInstance.pipe(operator())</code>. These include, <a href="/api/operators/filter"><code>filter(...)</code></a>, and <a href="/api/operators/mergeMap"><code>mergeMap(...)</code></a>. When called, they do not <em>change</em> the existing Observable instance. Instead, they return a <em>new</em> Observable, whose subscription logic is based on the first Observable.</p>
+<p><span class="informal">A Pipeable Operator is a function that takes an Observable as its input and returns another Observable. It is a pure operation: the previous Observable stays unmodified.</span></p>
+<p>A Pipeable Operator is essentially a pure function which takes one Observable as input and generates another Observable as output. Subscribing to the output Observable will also subscribe to the input Observable.</p>
+<p><strong>Creation Operators</strong> are the other kind of operator, which can be called as standalone functions to create a new Observable. For example: <code>of(1, 2, 3)</code> creates an observable that will emit 1, 2, and 3, one right after another. Creation operators will be discussed in more detail in a later section.</p>
+<p>For example, the operator called <a href="/api/operators/map"><code>map</code></a> is analogous to the Array method of the same name. Just as <code>[1, 2, 3].map(x =&gt; x * x)</code> will yield <code>[1, 4, 9]</code>, the Observable created like this:</p>
+
+<h2>Contador hasta 3</h2>
+<table>
+    <tr>
+        <td>concatMap</td>
+        <td>{{concatMapResult}}</td>
+        <td>Encadenas contadores, no se inicia un contador nuevo hasta que termina el anterior y se inicia el siguiente de la cola</td>
+    </tr>
+    <tr>
+        <td>mergeMap</td>
+        <td>{{mergeMapResult}}</td>
+        <td>Inicia un contador siempre que le das</td>
+    </tr>
+    <tr>
+        <td>switchMap</td>
+        <td>{{switchMapResult}}</td>
+        <td>Inicia un contador y para el que estuviera en ejecucion</td>
+    </tr>
+    <tr>
+        <td>exhaustMap</td>
+        <td>{{exhaustMapResult}}</td>
+        <td>Ignora starts consecutivos no inicia uno nuevo hasta que el anterior ha sido finalizado</td>
+    </tr>
+</table>
